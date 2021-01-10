@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Dietro
+    uniqueID: 2977436295
+    locked: 0
+  - name: InMezzo
+    uniqueID: 662147009
+    locked: 0
+  - name: Avanti
+    uniqueID: 2549517043
+    locked: 0
