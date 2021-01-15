@@ -7,8 +7,10 @@ public class BimbaScript : MonoBehaviour
 
     public float Forza;
 
-     Rigidbody2D rb;
+    Rigidbody2D rb;
     bool partito;
+
+    bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +39,18 @@ public class BimbaScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Tronco")
+        {
+            gameOver = true;
+            
+        }
+
         if (collision.gameObject.tag == "Punti") 
         {
-            PuntiManager.Instance.IncrementaPunti();
+            if (!gameOver)
+                PuntiManager.Instance.IncrementaPunti();
+            else
+                Debug.Log("Game Over");
         }
     }
 }
