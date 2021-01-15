@@ -8,16 +8,27 @@ public class Spawner : MonoBehaviour
     public float spawnTimeInterval = 1;
     public GameObject gruppoTronchi;
 
+    bool partito = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("spawn", 0, spawnTimeInterval);
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            if (!partito)
+            {
+                InvokeRepeating("spawn", 0, spawnTimeInterval);
+                partito = true;
+            }
+
+        }
     }
 
 

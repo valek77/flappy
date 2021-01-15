@@ -24,6 +24,7 @@ public class PuntiManager : MonoBehaviour
     public void IncrementaPunti() 
     {
         punti++;
+        Debug.Log("Punti: " + punti);
     }
 
 
