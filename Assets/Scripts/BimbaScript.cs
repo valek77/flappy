@@ -42,7 +42,14 @@ public class BimbaScript : MonoBehaviour
         if (collision.gameObject.tag == "Tronco")
         {
             gameOver = true;
-            
+
+            PuntiManager.Instance.registraPunteggio();
+            UIManager.Instance.HandleGameOver();
+            Spawner.Instance.StopSpawn();
+            this.gameObject.SetActive(false);
+
+
+
         }
 
         if (collision.gameObject.tag == "Punti") 

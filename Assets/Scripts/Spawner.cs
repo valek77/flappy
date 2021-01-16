@@ -10,6 +10,15 @@ public class Spawner : MonoBehaviour
 
     bool partito = false;
 
+    public static Spawner Instance;
+
+    private void Awake()
+    {
+        if (Instance == null) {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
