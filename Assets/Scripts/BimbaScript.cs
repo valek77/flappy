@@ -9,6 +9,7 @@ public class BimbaScript : MonoBehaviour
 
     Rigidbody2D rb;
     bool partito;
+    public GameObject tapHere;
 
     bool gameOver = false;
     // Start is called before the first frame update
@@ -21,20 +22,34 @@ public class BimbaScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !gameOver)
+        {
 
             if (!partito)
             {
                 partito = true;
                 rb.isKinematic = false;
+                tapHere.SetActive(false);
 
             }
-            else 
+            else
             {
-                rb.AddForce(new Vector2(0,Forza));
+                rb.AddForce(new Vector2(0, Forza));
             }
 
         }
+    }
+
+    private void StoppaTutto()
+    {
+        PuntiManager.Instance.registraPunteggio();
+        UIManager.Instance.HandleGameOver();
+        Spawner.Instance.StopSpawn();
+        //this.gameObject.SetActive(false);
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+
+        GetComponent<Animator>().Play("BimbaCollisione");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,21 +58,27 @@ public class BimbaScript : MonoBehaviour
         {
             gameOver = true;
 
-            PuntiManager.Instance.registraPunteggio();
-            UIManager.Instance.HandleGameOver();
-            Spawner.Instance.StopSpawn();
-            this.gameObject.SetActive(false);
+            StoppaTutto();
 
 
 
         }
 
-        if (collision.gameObject.tag == "Punti") 
+        if (collision.gameObject.tag == "Punti")
         {
             if (!gameOver)
                 PuntiManager.Instance.IncrementaPunti();
             else
                 Debug.Log("Game Over");
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Terreno")
+        {
+            StoppaTutto();
         }
     }
 }

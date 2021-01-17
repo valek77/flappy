@@ -8,6 +8,7 @@ TagManager:
   - Deleter
   - Punti
   - Tronco
+  - Terreno
   layers:
   - Default
   - TransparentFX
