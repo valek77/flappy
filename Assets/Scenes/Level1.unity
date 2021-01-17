@@ -1674,7 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e880dcdb20536de4a81f54c95bbbfea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxY: 3
+  maxY: 2
   spawnTimeInterval: 3
   gruppoTronchi: {fileID: 5813657308197319102, guid: 1d0a7c15f33cfbd43b568496b622ba9a, type: 3}
 --- !u!4 &1504712257
@@ -2351,6 +2351,10 @@ PrefabInstance:
     - target: {fileID: 5813657308197319102, guid: 1d0a7c15f33cfbd43b568496b622ba9a, type: 3}
       propertyPath: m_Name
       value: GruppoTronchi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813657308197319102, guid: 1d0a7c15f33cfbd43b568496b622ba9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0a7c15f33cfbd43b568496b622ba9a, type: 3}

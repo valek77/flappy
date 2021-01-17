@@ -13,8 +13,8 @@ public class GruppoTronchi : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // InvokeRepeating("settaVelocita", 0, 1);
-        settaVelocita();
+         InvokeRepeating("settaVelocita", 0, 1);
+        
     }
 
     private void settaVelocita() {
@@ -23,7 +23,7 @@ public class GruppoTronchi : MonoBehaviour
     }
 
     public void ferma() {
-       // CancelInvoke("settaVelocita");
+        CancelInvoke("settaVelocita");
         rb.velocity = Vector2.zero;
       
     }
