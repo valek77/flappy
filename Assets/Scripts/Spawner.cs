@@ -48,5 +48,13 @@ public class Spawner : MonoBehaviour
     public void StopSpawn() {
 
         CancelInvoke("spawn");
+
+        GameObject[] tronchi = GameObject.FindGameObjectsWithTag("GruppoTronchi");
+
+        foreach (GameObject t in tronchi) {
+            string name = t.name;
+            t.GetComponent<GruppoTronchi>().ferma();
+           // t.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
 }

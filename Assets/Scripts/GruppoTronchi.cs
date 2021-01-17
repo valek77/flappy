@@ -13,12 +13,19 @@ public class GruppoTronchi : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("settaVelocita", 0, 1);
+        // InvokeRepeating("settaVelocita", 0, 1);
+        settaVelocita();
     }
 
     private void settaVelocita() {
         velocitaY = -1 * velocitaY;
         rb.velocity = new Vector2(velocitaX, velocitaY);
+    }
+
+    public void ferma() {
+       // CancelInvoke("settaVelocita");
+        rb.velocity = Vector2.zero;
+      
     }
 
     // Update is called once per frame
@@ -27,10 +34,14 @@ public class GruppoTronchi : MonoBehaviour
         
     }
 
+  
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Deleter")) {
             Destroy(gameObject);
         }
+
+       
     }
 }

@@ -11,10 +11,20 @@ public class BimbaScript : MonoBehaviour
     bool partito;
     public GameObject tapHere;
 
+    static AudioClip voloClip;
+    static AudioClip crashClip;
+    AudioSource audioSrc;
+
     bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
+        voloClip = (AudioClip)Resources.Load("Sounds/volo");
+        crashClip = (AudioClip)Resources.Load("Sounds/crash");
+
+       
+
         rb = GetComponent<Rigidbody2D>();
         partito = false;
     }
@@ -34,7 +44,12 @@ public class BimbaScript : MonoBehaviour
             }
             else
             {
-                rb.AddForce(new Vector2(0, Forza));
+                if (!gameOver)
+                {
+                    rb.AddForce(new Vector2(0, Forza));
+                    audioSrc.clip = voloClip;
+                    audioSrc.Play();
+                }
             }
 
         }
@@ -45,11 +60,13 @@ public class BimbaScript : MonoBehaviour
         PuntiManager.Instance.registraPunteggio();
         UIManager.Instance.HandleGameOver();
         Spawner.Instance.StopSpawn();
-        //this.gameObject.SetActive(false);
+      
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
 
         GetComponent<Animator>().Play("BimbaCollisione");
+        audioSrc.clip = crashClip;
+        audioSrc.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +75,7 @@ public class BimbaScript : MonoBehaviour
         {
             gameOver = true;
 
+           
             StoppaTutto();
 
 
