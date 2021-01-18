@@ -15,6 +15,9 @@ public class BimbaScript : MonoBehaviour
     static AudioClip crashClip;
     AudioSource audioSrc;
 
+    // public SpriteRenderer sr;
+    static Sprite s2;
+
     bool gameOver = false;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class BimbaScript : MonoBehaviour
         voloClip = (AudioClip)Resources.Load("Sounds/volo");
         crashClip = (AudioClip)Resources.Load("Sounds/crash");
 
-       
+        s2 = Resources.Load<Sprite>("Sprites/bimba2");
 
         rb = GetComponent<Rigidbody2D>();
         partito = false;
@@ -60,11 +63,12 @@ public class BimbaScript : MonoBehaviour
         PuntiManager.Instance.registraPunteggio();
         UIManager.Instance.HandleGameOver();
         Spawner.Instance.StopSpawn();
-      
+
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
 
-        GetComponent<Animator>().Play("BimbaCollisione");
+
+        GetComponent<SpriteRenderer>().sprite = s2;
         audioSrc.clip = crashClip;
         audioSrc.Play();
     }
@@ -74,12 +78,7 @@ public class BimbaScript : MonoBehaviour
         if (collision.gameObject.tag == "Tronco")
         {
             gameOver = true;
-
-           
             StoppaTutto();
-
-
-
         }
 
         if (collision.gameObject.tag == "Punti")
