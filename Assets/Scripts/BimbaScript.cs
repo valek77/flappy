@@ -14,8 +14,10 @@ public class BimbaScript : MonoBehaviour
     static AudioClip voloClip;
     static AudioClip crashClip;
     AudioSource audioSrc;
+    SpriteRenderer sr;
 
     // public SpriteRenderer sr;
+    static Sprite s1;
     static Sprite s2;
 
     bool gameOver = false;
@@ -26,7 +28,11 @@ public class BimbaScript : MonoBehaviour
         voloClip = (AudioClip)Resources.Load("Sounds/volo");
         crashClip = (AudioClip)Resources.Load("Sounds/crash");
 
-        s2 = Resources.Load<Sprite>("Sprites/bimba2");
+        sr = GetComponent<SpriteRenderer>();
+        s1 = Resources.Load<Sprite>("Sprites/" + Parameters.PlayerName + "1");
+        s2 = Resources.Load<Sprite>("Sprites/"+Parameters.PlayerName+"2");
+
+        sr.sprite = s1;
 
         rb = GetComponent<Rigidbody2D>();
         partito = false;
@@ -68,7 +74,7 @@ public class BimbaScript : MonoBehaviour
         rb.isKinematic = true;
 
 
-        GetComponent<SpriteRenderer>().sprite = s2;
+        sr.sprite = s2;
         audioSrc.clip = crashClip;
         audioSrc.Play();
     }

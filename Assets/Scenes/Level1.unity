@@ -2042,6 +2042,7 @@ MonoBehaviour:
   HighScoreText: {fileID: 364097749}
   gameOverPanel: {fileID: 294090630}
   gameOverText: {fileID: 1737036536}
+  PlayerImg: {fileID: 1624892815}
 --- !u!4 &1701594464
 Transform:
   m_ObjectHideFlags: 0

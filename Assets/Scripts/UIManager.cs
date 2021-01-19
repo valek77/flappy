@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Text HighScoreText;
     public GameObject gameOverPanel;
     public GameObject gameOverText;
+    public Image PlayerImg;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        
+        PlayerImg.sprite = Resources.Load<Sprite>("Sprites/" + Parameters.PlayerName + "1");
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
         HighScoreText.text = "High Score :" + PlayerPrefs.GetInt("Record");
         gameOverPanel.SetActive(true);
         gameOverText.SetActive(true);
+   
     }
 
 

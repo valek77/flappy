@@ -17,7 +17,14 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void OnButtonClick() {
+    public void OnIlaButtonClick() {
+        Parameters.PlayerName = "bimba";
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void OnManuButtonClick()
+    {
+        Parameters.PlayerName = "manu";
         SceneManager.LoadScene("Level1");
     }
 }
